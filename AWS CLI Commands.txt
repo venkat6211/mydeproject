@@ -1,0 +1,76 @@
+
+
+
+aws --version
+
+#list all S3 buckets
+aws s3 ls
+
+# create and delete bucket
+aws s3api create-bucket --bucket my-bucket --region us-east-1
+aws s3api delete-bucket --bucket my-bucket --region us-east-1
+
+# Copy s3 bucket
+aws s3 cp myfolder s3://mybucket/myfolder --recursive
+
+
+# list all user's info
+aws iam list-users
+
+# list all access keys
+aws iam list-access-keys
+
+# list all keypairs
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-key-pairs.html
+aws ec2 describe-key-pairs
+
+# list all instances (running, and not running)
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html
+aws ec2 describe-instances
+
+# create a new instance
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/run-instances.html
+aws ec2 run-instances --image-id ami-f0e7d19a --instance-type t2.micro --security-group-ids sg-00000000 
+
+
+# stop an instance
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/terminate-instances.html
+aws ec2 terminate-instances \
+    --instance-ids <instance_id>
+
+# list status of all instances
+# http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instance-status.html
+aws ec2 describe-instance-status
+
+# list status of a specific instance
+aws ec2 describe-instance-status \
+    --instance-ids <instance_id>
+
+Example with a fake id:
+
+aws ec2 describe-instances --instance-ids i-c71r246a
+aws
+
+
+
+aws ec2 describe-instances
+aws ec2 start-instances --instance-ids i-1348636c
+
+aws s3 cp myfolder s3://mybucket/myfolder --recursive
+
+A sync command makes it easy to synchronize the contents of a local folder with a copy in an S3 bucket.
+ aws s3 sync myfolder s3://mybucket/myfolder --exclude *.tmp
+
+
+aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > MyKeyPair.pem
+
+aws ec2 describe-key-pairs --key-name MyKeyPair
+aws ec2 delete-key-pair --key-name MyKeyPair
+
+aws ec2 create-security-group --group-name my-sg --description "My security group" --vpc-id vpc-1a2b3c4d
+
+aws ec2 run-instances --image-id ami-05ce3abcaf51f14b2 --count 1 --instance-type t2.micro --key-name abc --security-group-ids sg-0edaa3a7774f52862 --subnet-id subnet-03e9e9ac3832f9f20
+
+aws ec2 describe-instances --filters "Name=instance-type,Values=t2.micro" --query "Reservations[].Instances[].InstanceId"
+
+aws ec2 terminate-instances --instance-ids i-5203422c
